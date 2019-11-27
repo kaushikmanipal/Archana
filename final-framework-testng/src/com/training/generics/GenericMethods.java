@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.asserts.SoftAssert;
 
 /**
  * 
@@ -15,7 +16,7 @@ import org.openqa.selenium.WebElement;
  */
 public class GenericMethods {
 	WebDriver driver ; 
-	
+	SoftAssert s = new SoftAssert();
 	public GenericMethods(WebDriver driver){
 		this.driver = driver;
 	}
@@ -81,4 +82,108 @@ public class GenericMethods {
 	public boolean checkSingleEntry(String locator, String type){
 		return getElementsAsList(locator, type).size() ==1;
 	}
+
+	// AssertURl - getUrl()
+		public void assertURL(String expectedURL) {
+			String actualURL = driver.getCurrentUrl();
+			System.out.println("The URL at runtime is " + actualURL);
+			//SoftAssert s = new SoftAssert();
+			s.assertTrue(actualURL.equals(expectedURL),
+					"The assertion failed as the expected URL did not match with actual URL");
+			s.assertAll();
+		}
+		// AssertTEXT - getText
+		public void assertText(String expectedText, String locator, String type, String msg) {
+			type = type.toLowerCase();
+			s = new SoftAssert();
+			if (type.equals("id")) {
+				String actualText = driver.findElement(By.id(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("class")) {
+				String actualText = driver.findElement(By.className(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("name")) {
+				String actualText = driver.findElement(By.name(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("xpath")) {
+				System.out.println(expectedText);
+				String actualText = driver.findElement(By.xpath(locator)).getText();
+				System.out.println(actualText);
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("css")) {
+				String actualText = driver.findElement(By.cssSelector(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("tagname")) {
+				String actualText = driver.findElement(By.tagName(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("linktext")) {
+				String actualText = driver.findElement(By.linkText(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			} else if (type.equals("partiallinktext")) {
+				String actualText = driver.findElement(By.partialLinkText(locator)).getText();
+				s.assertTrue(actualText.equals(expectedText), msg);
+				s.assertAll();
+			}
+
+		}
+		
+		// AssertAttributeValue = getAttribute()
+		//Attribute type - value, id, class, name, title, 
+		//type - xpath, name, class, xpath, css, tagname, partiallinktext,linktext
+		public void assertAttributeValue(String expectedAttributeVal, String attributeType,String locator, String type, String msg) {
+			type = type.toLowerCase();
+			s = new SoftAssert();
+			if (type.equals("id")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("class")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("name")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("xpath")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("css")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("tagname")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("linktext")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			} else if (type.equals("partiallinktext")) {
+				String actualAttributeVal = driver.findElement(By.id(locator)).getAttribute(attributeType);
+				s.assertTrue(actualAttributeVal.equals(expectedAttributeVal), msg);
+				s.assertAll();
+			}
+
+		}
+		
+		// AssertTitle = getTitle();
+		public void assertTitle(String expectedTitle) {
+			String actualTitle = driver.getTitle();
+			System.out.println("The URL at runtime is " + actualTitle);
+			s = new SoftAssert();
+			s.assertTrue(actualTitle.equals(expectedTitle),
+					"The assertion failed as the expected URL did not match with actual URL");
+			s.assertAll();
+		}
+
 }
