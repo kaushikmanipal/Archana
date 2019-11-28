@@ -53,6 +53,6 @@ public class ELTC_004Test {
 		lostPswdPOM.sendUsername("reva");
 		lostPswdPOM.clickSendMsgBtn(); 
 		screenShot.captureScreenShot("First");
-		genMeth.assertText("Your password has been emailed to you", "//*[@id=\"cm-content\"]/div/div[2]/div[1]/div/div", "xpath", "Pass");
+		genMeth.assertText("Your password has been emailed to you", "//*[@id=\"cm-content\"]/div/div[2]/div[1]/div/div", "xpath", "Expected Msg Not Found");
 	}
 }

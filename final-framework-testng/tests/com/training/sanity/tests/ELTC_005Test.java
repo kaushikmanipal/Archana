@@ -63,6 +63,6 @@ public class ELTC_005Test {
 		screenShot.captureScreenShot("First");
 		genMeth.assertText("Dear test17 test,\r\n" + 
 				"\r\n" + 
-				"Your personal settings have been registered.", "//*[@id=\"cm-content\"]/div/div[2]/div/p[1]", "xpath", "Pass");
+				"Your personal settings have been registered.", "//*[@id=\"cm-content\"]/div/div[2]/div/p[1]", "xpath", "Expected Msg Not Found");
 	}
 }

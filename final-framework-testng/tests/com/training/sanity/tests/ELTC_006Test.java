@@ -53,6 +53,6 @@ public class ELTC_006Test {
 		loginPOM.sendPassword("test123");
 		loginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("First");
-		genMeth.assertText("Hello Teacher12 teach and welcome,", "//*[@id=\"homepage-course\"]/div/p[1]", "xpath", "Pass");
+		genMeth.assertText("Hello Teacher12 teach and welcome,", "//*[@id=\"homepage-course\"]/div/p[1]", "xpath", "Expected Msg Not Found");
 	}
 }
